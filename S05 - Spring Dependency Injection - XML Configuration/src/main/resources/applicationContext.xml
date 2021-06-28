@@ -23,6 +23,9 @@
 	<bean id="myFortune"
 		class="dependency.injection.xml.configuration.interfaces.impl.HappyFortuneService">
 	</bean>
+	<bean id="myRandomFortune"
+		class="dependency.injection.xml.configuration.interfaces.impl.RandomFortuneService">
+	</bean>
 
 	<!-- Define your beans here -->
 	<bean id="myGolfCoach"
@@ -43,7 +46,7 @@
 		class="dependency.injection.xml.configuration.interfaces.impl.CricketCoach">
 		
 		<!-- Setup the setter injection -->
-		<property name="fortuneService" ref="myFortune" /> <!-- This will call the setFortuneService method @CricketCoach -->
+		<property name="fortuneService" ref="myRandomFortune" /> <!-- This will call the setFortuneService method @CricketCoach -->
 		
 		<!-- Inject literal values -->
 		<!-- HARDCODED VERSION

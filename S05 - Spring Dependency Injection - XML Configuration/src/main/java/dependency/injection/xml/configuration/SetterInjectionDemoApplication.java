@@ -24,8 +24,8 @@ public class SetterInjectionDemoApplication {
 	CricketCoach theCoach = context.getBean("myCricketCoach", CricketCoach.class); // This also works fine
 
 	// call methods on the bean
-	System.out.println(theCoach.getDailyWorkout());
-	System.out.println(theCoach.getDailyFortune());
+	System.out.println("DAILY WORKOUT : " + theCoach.getDailyWorkout());
+	System.out.println("FORTUNE : " + theCoach.getDailyFortune());
 	
 	// call the new methods for literal values
 	System.out.println("Email address : " + theCoach.getEmailAddress());
