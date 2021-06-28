@@ -29,6 +29,7 @@ public class SpringApplication {
 	theCoach = context.getBean("myBasketCoach", ICoach.class);
 	// call methods on the bean
 	System.out.println(theCoach.getDailyWorkout());
+	System.out.println(theCoach.getDailyFortune()); // Obtained through DI
 	
 	// close the context
 	context.close();
