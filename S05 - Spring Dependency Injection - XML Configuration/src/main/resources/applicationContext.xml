@@ -38,6 +38,9 @@
 		class="dependency.injection.xml.configuration.interfaces.impl.CricketCoach">
 		<!-- Setup the setter injection -->
 		<property name="fortuneService" ref="myFortune" /> <!-- This will call the setFortuneService method @CricketCoach -->
+		<!-- Inject literal values -->
+		<property name="emailAddress" value="test@test.com" /> <!-- This will call the setEmailAddress method @CricketCoach -->
+		<property name="team" value="Steam Powered" /> <!-- This will call the setTeam method @CricketCoach -->
 	</bean>
 
 </beans>
