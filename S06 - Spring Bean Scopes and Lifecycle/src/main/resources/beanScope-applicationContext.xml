@@ -16,8 +16,17 @@
 	</bean>
 
 	<!-- Define your beans here -->
-	<bean id="myCoach"
+	<bean id="mySingletonCoach"
 		class="bean.scopes.lifecycle.interfaces.impl.BasketCoach">
+		
+		<!-- Setup the constructor injection -->
+		<constructor-arg ref="myFortune" />
+	</bean>
+
+	<!-- Define your beans here -->
+	<bean id="myPrototypeCoach"
+		class="bean.scopes.lifecycle.interfaces.impl.BasketCoach"
+		scope="prototype">
 		
 		<!-- Setup the constructor injection -->
 		<constructor-arg ref="myFortune" />
