@@ -26,6 +26,10 @@ public class BeanLifeCycleDemoApplication {
 	System.out.println(theCoach.getDailyWorkout());
 	System.out.println(theCoach.getDailyFortune());
 	
+	// PROTOTYPE DESTROY HANDLER TEST
+	theCoach = context.getBean("myPrototypeCoach", ICoach.class);
+	System.out.println(theCoach.getDailyWorkout());
+	
 	// close the context
 	context.close();
     }

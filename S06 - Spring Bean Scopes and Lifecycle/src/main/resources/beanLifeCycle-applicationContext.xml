@@ -21,6 +21,20 @@
 		<!-- Setup the constructor injection -->
 		<constructor-arg ref="myFortune" />
 	</bean>
+	
+	<bean id="myPrototypeCoach"
+		class="bean.scopes.lifecycle.interfaces.impl.PrototypeCoach"
+		init-method="doStartup"
+		scope="prototype">
+		
+		<!-- Setup the constructor injection -->
+		<constructor-arg ref="myFortune" />
+	</bean>
+
+	<!-- Bean custom processor to handle calling destroy methods on prototype scoped beans -->
+    <bean id="prototypeDestroyHandler"
+    		class="bean.scopes.lifecycle.handler.PrototypeDestroyHandlerProcessor">
+   	</bean>
 
 </beans>
 
