@@ -9,9 +9,10 @@ import spring.configuration.annotations.interfaces.ICoach;
 
 /**
  * @author Jonathan Vinh
- *
  */
-@Component("thatTennisCoach")
+// @Component("thatTennisCoach") // Explicit Bean ID
+@Component // Default Bean ID = Class name with first letter in lowercase (ie :
+	   // tennisCoach)
 public class TennisCoach implements ICoach {
 
     @Override
