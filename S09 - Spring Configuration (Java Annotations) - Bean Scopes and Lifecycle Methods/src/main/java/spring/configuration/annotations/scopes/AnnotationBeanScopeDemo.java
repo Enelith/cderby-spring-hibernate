@@ -22,7 +22,7 @@ public class AnnotationBeanScopeDemo {
 	ClassPathXmlApplicationContext context = 
 		    new ClassPathXmlApplicationContext("applicationContext.xml");
 	
-	initBeans(context, "tennisCoach_ScopeSingleton");
+	// initBeans(context, "tennisCoach_ScopeSingleton");
 	
 	initBeans(context, "tennisCoach_ScopePrototype");
 
