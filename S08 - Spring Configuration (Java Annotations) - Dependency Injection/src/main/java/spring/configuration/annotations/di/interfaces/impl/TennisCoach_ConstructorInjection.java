@@ -11,12 +11,14 @@ import spring.configuration.annotations.di.interfaces.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
-public class TennisCoach implements Coach {
+public class TennisCoach_ConstructorInjection implements Coach {
 
     private FortuneService fortuneService;
 
+    // Autowired annotation for constructors
     @Autowired
-    public TennisCoach(FortuneService theFortuneService) {
+    public TennisCoach_ConstructorInjection(FortuneService theFortuneService) {
+	System.out.println(" >> TennisCoach_ConstructorInjection : inside default constructor");
 	fortuneService = theFortuneService;
     }
 
