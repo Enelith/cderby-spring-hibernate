@@ -22,7 +22,7 @@ public class AnnotationBeanScopeDemo {
 	ClassPathXmlApplicationContext context = 
 		    new ClassPathXmlApplicationContext("applicationContext.xml");
 	
-	// initBeans(context, "tennisCoach_ScopeSingleton");
+	initBeans(context, "tennisCoach_ScopeSingleton");
 	
 	initBeans(context, "tennisCoach_ScopePrototype");
 
@@ -34,6 +34,11 @@ public class AnnotationBeanScopeDemo {
 	// Retrieve bean from Spring Container
 	Coach theCoach = context.getBean(beanType, Coach.class);
 	Coach otherCoach = context.getBean(beanType, Coach.class);
+
+	System.out.println();
+	System.out.println(beanType + " >> DAILY FORTUNE theCoach : " + theCoach.getDailyFortune());
+	System.out.println(beanType + " >> DAILY FORTUNE otherCoach : " + theCoach.getDailyFortune());
+	System.out.println();
 	
 	displayResult(theCoach, otherCoach);
     }

@@ -23,7 +23,8 @@ import spring.configuration.annotations.scopes.interfaces.FortuneService;
 public class TennisCoach_ScopeSingleton implements Coach {
 
     @Autowired
-    @Qualifier("randomFortuneService")
+//    @Qualifier("randomFortuneService")
+    @Qualifier("fileFortuneService")
     private FortuneService fortuneService;
 
     // Define a default constructor
