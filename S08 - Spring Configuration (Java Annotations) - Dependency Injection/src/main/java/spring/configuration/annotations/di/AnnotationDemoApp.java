@@ -21,6 +21,9 @@ public class AnnotationDemoApp {
 	theCoach = context.getBean("tennisCoach_SetterInjection", Coach.class);
 	call(theCoach);
 	
+	theCoach = context.getBean("tennisCoach_MethodInjection", Coach.class);
+	call(theCoach);
+	
 	// close the context
 	context.close();
     }
