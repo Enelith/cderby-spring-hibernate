@@ -4,6 +4,7 @@
 package spring.configuration.annotations.di.interfaces.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import spring.configuration.annotations.di.interfaces.Coach;
@@ -21,6 +22,7 @@ public class TennisCoach_MethodInjection implements Coach {
     
     // Define a method
     @Autowired
+    @Qualifier("randomFortuneService")
     public void doSomethingRandom(FortuneService fortuneService) {
 	System.out.println(" >> TennisCoach_MethodInjection : inside doSomethingRandom");
 	this.fortuneService = fortuneService;

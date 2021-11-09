@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 import spring.configuration.annotations.di.interfaces.FortuneService;
 
 @Component
-public class HappyFortuneService implements FortuneService {
+public class DatabaseFortuneService implements FortuneService {
 
     @Override
     public String getFortune() {
-	return "Today is your lucky day! ~ HappyFortuneService";
+	return "Today is your lucky day! ~ DatabaseFortuneService";
     }
 
 }

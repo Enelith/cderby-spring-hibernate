@@ -4,6 +4,7 @@
 package spring.configuration.annotations.di.interfaces.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import spring.configuration.annotations.di.interfaces.Coach;
@@ -22,6 +23,7 @@ import spring.configuration.annotations.di.interfaces.FortuneService;
 public class TennisCoach_FieldInjection implements Coach {
 
     @Autowired
+    @Qualifier("databaseFortuneService")
     private FortuneService fortuneService;
 
     // Define a default constructor

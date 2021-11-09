@@ -3,12 +3,12 @@
  */
 package spring.configuration.annotations.di.interfaces.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import spring.configuration.annotations.di.interfaces.Coach;
 import spring.configuration.annotations.di.interfaces.FortuneService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class TennisCoach_ConstructorInjection implements Coach {
@@ -17,7 +17,7 @@ public class TennisCoach_ConstructorInjection implements Coach {
 
     // Autowired annotation for constructors
     @Autowired
-    public TennisCoach_ConstructorInjection(FortuneService theFortuneService) {
+    public TennisCoach_ConstructorInjection(@Qualifier("happyFortuneService") FortuneService theFortuneService) {
 	System.out.println(" >> TennisCoach_ConstructorInjection : inside default constructor");
 	fortuneService = theFortuneService;
     }
