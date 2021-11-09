@@ -1,138 +1,73 @@
-# Annotations - Default Bean Names - The Special Case
+# Bean Lifecycle Method Annotations - Overview
 
-In general, when using Annotations, for the default bean name, Spring uses the following rule.
+You can add custom code during **bean initialization** and **bean destruction**.
 
-If the annotation's value doesn't indicate a bean name, an appropriate name will be built based on the short name of the class (with the first letter lower-cased).
+1. Define your methods for init and destroy
+2. Add annotations : @PostConstruct and @PreDestroy
 
-For example:
+@PostConstruct : Code will execute after constructor **and** after injection or dependencies.
 
-```
-HappyFortuneService --> happyFortuneService
-```
-
-***
-
-However, for the special case of when BOTH the first and second characters of the class name are upper case, then the name is NOT converted.
-
-For the case of RESTFortuneService
-
-```
-RESTFortuneService --> RESTFortuneService
-```
-
-No conversion since the first two characters are upper case.
-
-Behind the scenes, Spring uses the Java Beans Introspector to generate the default bean name. 
-Also, here's a link to the documentation.
-
-- <a href="https://docs.oracle.com/javase/8/docs/api/java/beans/Introspector.html#decapitalize(java.lang.String)">https://docs.oracle.com/javase/8/docs/api/java/beans/Introspector.html#decapitalize(java.lang.String)</a>
-
-***
-
-As always, you can specify a name for your bean.
-
-```
-@Component("foo")
-public class RESTFortuneService .... {
-    
-}
-```
-Then you can access it using the name of "foo". Nothing tricky to worry about
-
-***
-
-# Using @Qualifier with Constructors
-**@Qualifier** is a nice feature, but it is tricky when used with Constructors.
-
-The syntax is much different from other examples and not exactly intuitive.  Consider this the "deep end of the pool" when it comes to Spring configuration.
-
-You have to place the @Qualifier annotation inside of the constructor arguments. 
-
-Here's an example from our classroom example. I updated it to make use of constructor injection, with @Autowired and @Qualifier. 
-
-```
-package com.luv2code.springdemo;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
-public class TennisCoach implements Coach {
-
-    private FortuneService fortuneService;
-
-    // define a default constructor
-    public TennisCoach() {
-        System.out.println(">> TennisCoach: inside default constructor");
-    }
-    
-    @Autowired
-    public TennisCoach(@Qualifier("randomFortuneService") FortuneService theFortuneService) {
-        System.out.println(">> TennisCoach: inside constructor using @autowired and @qualifier");
-        fortuneService = theFortuneService;
-    }
-    
-    @Override
-    public String getDailyWorkout() {
-        return "Practice your backhand volley";
-    }
-
-    @Override
-    public String getDailyFortune() {
-        return fortuneService.getFortune();
-    }
-
-}
-```
+@PreDestroy : Code will execute **before** bean is destroyed.
 
 ---
 
-For detailed documentation on using @Qualified with Constructors, see this link in the Spring Reference Manual
+# Special Note about @PostConstruct and @PreDestroy Method Signatures
 
-<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-autowired-annotation-qualifiers">
-https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-autowired-annotation-qualifiers
+I want to provide additional details regarding the method signatures of @PostContruct and @PreDestroy methods.
+
+##### Access modifier
+The method can have any access modifier (public, protected, private)
+
+##### Return type
+The method can have any return type. However, "void' is most commonly used. If you give a return type just note that you will not be able to capture the return value. As a result, "void" is commonly used.
+
+##### Method name
+The method can have any method name.
+
+##### Arguments
+The method can not accept any arguments. The method should be **no-arg**.
+
+---
+
+# HEADS UP - FOR JAVA 9, 10 and 11  USERS - @PostConstruct and @PreDestroy
+
+If you are using Java 9 or higher, then you will encounter an error when using @PostConstruct and @PreDestroy in your code. 
+
+These are the steps to resolve it. Come back to the lecture if you hit the error. 
+
+##### Error
+
+Eclipse is unable to import @PostConstruct or @PreDestroy
+
+This happens because of Java 9 and higher. 
+
+When using Java 9 and higher, javax.annotation has been removed from its default classpath. That's why we Eclipse can't find it.
+
+---
+
+##### Solution
+
+1. Download the javax.annotation-api-1.3.2.jar from : 
+<a href="https://search.maven.org/remotecontent?filepath=javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar">
+https://search.maven.org/remotecontent?filepath=javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar
 </a>
 
+2. Copy the JAR file to the **lib** folder of your project
+
 ---
 
-# FAQ: How to inject properties file using Java annotations
+Use the following steps to add it to your Java Build Path.
 
-**FAQ: How to inject properties file using Java annotations**
+3. Right-click your project, select **Properties**
 
-**Answer:**
+4. On left-hand side, click **Java Build Path**
 
-This solution will show you how inject values from a properties file using annotatons. The values will no longer be hard coded in the Java code.
+5. In top-center of dialog, click **Libraries**
 
-**1. Create a properties file to hold your properties. It will be a name value pair.  **
+6. Click **Classpath** and then Click **Add JARs ...**
 
-New text file:  src/sport.properties
+7. Navigate to the JAR file **<your-project>/lib/javax.annotation-api-1.3.2.jar**
 
-```
-foo.email=myeasycoach@luv2code.com
-foo.team=Silly Java Coders
-```
-Note the location of the properties file is very important. It must be stored in **src/sport.properties**
+8. Click **OK** then click **Apply and Close**
 
-**2. Load the properties file in the XML config file.**
-
-File: applicationContext.xml
-
-Add the following lines:
-
-```
-    <context:property-placeholder location="classpath:sport.properties"/>  
-```
-
-This should appear just after the <context:component-scan .../> line
-
-**3. Inject the properties values into your Swim Coach: SwimCoach.java**
-
-```
-@Value("${foo.email}")
-private String email;
-    
-@Value("${foo.team}")
-private String team;
-```
-
+Eclipse will perform a rebuild of your project and it will resolve the related build errors.
