@@ -1,7 +1,7 @@
 /**
  * 
  */
-package spring.configuration.javacode;
+package spring.configuration.javacode.config1;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;

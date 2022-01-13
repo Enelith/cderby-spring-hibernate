@@ -1,7 +1,7 @@
 /**
  * 
  */
-package spring.configuration.javacode;
+package spring.configuration.javacode.config1;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,5 +13,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan("spring.configuration.javacode")
 public class SportConfig {
-
+    
 }

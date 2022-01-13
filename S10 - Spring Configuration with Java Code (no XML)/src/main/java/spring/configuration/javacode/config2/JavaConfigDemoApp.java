@@ -1,7 +1,7 @@
 /*
  * 
  */
-package spring.configuration.javacode;
+package spring.configuration.javacode.config2;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -17,7 +17,7 @@ public class JavaConfigDemoApp {
 		    new AnnotationConfigApplicationContext(SportConfig.class);
 
 	// get the bean from spring container
-	Coach theCoach = context.getBean("tennisCoach", Coach.class);
+	Coach theCoach = context.getBean("swimCoach", Coach.class);
 	call(theCoach);
 	
 	// close the context
