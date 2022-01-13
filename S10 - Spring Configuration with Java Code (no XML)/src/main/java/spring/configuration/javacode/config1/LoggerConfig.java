@@ -19,7 +19,7 @@ import org.springframework.context.annotation.PropertySource;
  * @author Jonathan Vinh
  */
 @Configuration
-@PropertySource("classpath:logging.properties")
+@PropertySource("classpath:application.properties")
 public class LoggerConfig {
 
     @Value("${root.logger.level}")

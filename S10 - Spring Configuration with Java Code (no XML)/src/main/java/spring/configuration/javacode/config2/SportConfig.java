@@ -17,7 +17,7 @@ import spring.configuration.javacode.interfaces.impl.SwimCoach;
  * @author Jonathan Vinh
  */
 @Configuration
-@PropertySource("classpath:logging.properties")
+@PropertySource("classpath:application.properties")
 public class SportConfig {
     
     @Bean

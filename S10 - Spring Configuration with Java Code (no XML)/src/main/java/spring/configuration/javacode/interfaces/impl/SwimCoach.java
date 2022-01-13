@@ -3,6 +3,8 @@
  */
 package spring.configuration.javacode.interfaces.impl;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import spring.configuration.javacode.interfaces.Coach;
 import spring.configuration.javacode.interfaces.FortuneService;
 
@@ -12,6 +14,13 @@ import spring.configuration.javacode.interfaces.FortuneService;
 public class SwimCoach implements Coach {
 
     private FortuneService fortuneService;
+    
+    // Field Level Injection
+    @Value("${foo.email}")
+    private String email;
+
+    @Value("${foo.team}")
+    private String team;
 
     /**
      * 
@@ -28,6 +37,14 @@ public class SwimCoach implements Coach {
     @Override
     public String getDailyFortune() {
 	return fortuneService.getFortune();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTeam() {
+        return team;
     }
 
 }

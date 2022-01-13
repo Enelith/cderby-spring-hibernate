@@ -6,6 +6,7 @@ package spring.configuration.javacode.config2;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import spring.configuration.javacode.interfaces.Coach;
+import spring.configuration.javacode.interfaces.impl.SwimCoach;
 
 public class JavaConfigDemoApp {
 
@@ -17,8 +18,12 @@ public class JavaConfigDemoApp {
 		    new AnnotationConfigApplicationContext(SportConfig.class);
 
 	// get the bean from spring container
-	Coach theCoach = context.getBean("swimCoach", Coach.class);
+	SwimCoach theCoach = context.getBean("swimCoach", SwimCoach.class);
 	call(theCoach);
+	
+	// Call the injected props values for SwimCoach
+	System.out.println("SwimCoach EMAIL : " + theCoach.getEmail());
+	System.out.println("SwimCoach TEAM : " + theCoach.getTeam());
 	
 	// close the context
 	context.close();
